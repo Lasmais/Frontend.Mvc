@@ -1,0 +1,15 @@
+version: '3.4'
+
+services:
+  frontend.mvc:
+    image: ${DOCKER_REGISTRY-}frontend
+    build:
+      context: .
+      dockerfile: Frontend.Mvc/Dockerfile
+
+  backend.api:
+    image: ${DOCKER_REGISTRY-}backend
+    build:
+      context: .
+      dockerfile: Backend.Api/Dockerfile
+

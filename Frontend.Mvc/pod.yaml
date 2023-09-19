@@ -1,0 +1,24 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-pod-deployment
+  labels:
+    app: frontend-label
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend-label
+  template:
+    metadata:
+      labels:
+        app: frontend-label
+    spec:
+      containers:
+      - name: frontend
+        image: frontend:1.0.6
+        ports:
+        - containerPort: 80
+        env:
+          - name: API_PATH_BASE
+            value: "frontend2"

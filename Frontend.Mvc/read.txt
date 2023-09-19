@@ -1,0 +1,22 @@
+﻿minikube service frontend-svc
+
+minikube addons enable ingress
+curl --resolve "k8.web.local:80:$(minikube ip)" -i http://k8.web.local
+minikube service deployment-frontend-chart-frontend-api --url
+minikube tunnel 
+
+docker build -t backend:1.0.0 -f Backend.Api/Dockerfile .
+docker build -t frontend:1.1.0 -f Frontend.MVC/Dockerfile .
+docker inspect backend:1.6.0
+
+minikube image load backend:1.6.0
+minikube image ls
+
+helm install deployment-project-chart project-chart/backend-api/ --values project-chart/backend-api/values.yaml
+helm upgrade deployment-project-chart project-chart/backend-api/ --values project-chart/backend-api/values.yaml
+helm delete deployment-project-chart
+
+helm install deployment-frontend-chart project-chart/frontend-api/ --values project-chart/frontend-api/values.yaml
+helm upgrade deployment-frontend-chart project-chart/frontend-api/ --values project-chart/frontend-api/values.yaml
+helm delete deployment-frontend-chart
+

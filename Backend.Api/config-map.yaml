@@ -1,0 +1,9 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: backend-config
+data:
+ Logging__LogLevel__Default: "Information"
+ Logging__LogLevel__ThorstenHans.SampleApi: "Debug"
+ Logging__LogLevel__Microsoft.AspNetCore: "Warning"
+ TestKey__Feature: true
