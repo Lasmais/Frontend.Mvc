@@ -8,6 +8,8 @@ minikube tunnel
 docker build -t backend:1.0.0 -f Backend.Api/Dockerfile .
 docker build -t frontend:1.1.0 -f Frontend.MVC/Dockerfile .
 docker inspect backend:1.6.0
+docker buildx build --platform linux/amd64 -f Frontend.MVC/Dockerfile . -t frontend:1.1.0
+
 
 minikube image load backend:1.6.0
 minikube image ls
@@ -20,3 +22,4 @@ helm install deployment-frontend-chart project-chart/frontend-api/ --values proj
 helm upgrade deployment-frontend-chart project-chart/frontend-api/ --values project-chart/frontend-api/values.yaml
 helm delete deployment-frontend-chart
 
+az aks get-credentials --resource-group rg-test01 --name aks01
